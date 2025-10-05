@@ -1,5 +1,6 @@
-// Stripe Publishable Key - Live Key
-const STRIPE_PUBLISHABLE_KEY = 'pk_live_51SEvie99LZyq13UTcLSfFmRyj645FMyMnbBFSoAWhqfRO9dFGcDOKvTKKSk2MvYOEfgY5ESBaZCN0raZC3IYQHqE00lETa6zjs';
+// Stripe Publishable Key - wird von der Netlify Function bereitgestellt
+// WICHTIG: Setzen Sie STRIPE_PUBLISHABLE_KEY in Netlify Environment Variables!
+const STRIPE_PUBLISHABLE_KEY = 'pk_live_YOUR_KEY_HERE';
 
 // Initialize Stripe
 let stripe;
