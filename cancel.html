@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bestellung abgebrochen - PetFeeder Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .cancel-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .cancel-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cancel-title {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cancel-message {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .info-box {
+            background: #fff3cd;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .info-box h3 {
+            color: #856404;
+            margin-bottom: 1rem;
+        }
+        
+        .info-box p {
+            color: #856404;
+            margin: 0.5rem 0;
+            font-size: 1.05rem;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🐾 PetFeeder Pro</h1>
+            <p class="tagline">Die perfekte Lösung für Ihre Haustiere</p>
+        </div>
+    </header>
+
+    <div class="cancel-container">
+        <div class="cancel-icon">❌</div>
+        <h1 class="cancel-title">Bestellung abgebrochen</h1>
+        <p class="cancel-message">
+            Ihre Bestellung wurde abgebrochen. Es wurde keine Zahlung durchgeführt.
+        </p>
+
+        <div class="info-box">
+            <h3>💡 Was Sie wissen sollten</h3>
+            <p>• Ihre Zahlungsinformationen wurden nicht gespeichert</p>
+            <p>• Sie können jederzeit eine neue Bestellung aufgeben</p>
+            <p>• Bei Fragen stehen wir Ihnen gerne zur Verfügung</p>
+            <p>• Das Angebot bleibt weiterhin gültig</p>
+        </div>
+
+        <div class="btn-group">
+            <a href="index.html" class="btn btn-primary">🛒 Erneut versuchen</a>
+            <a href="index.html" class="btn btn-secondary">🏠 Zur Startseite</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 PetFeeder Pro. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+</body>
+</html>

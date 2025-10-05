@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bestellung erfolgreich - PetFeeder Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .success-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .success-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: bounce 1s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .success-title {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .success-message {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .order-info {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .order-info h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .order-info p {
+            color: #555;
+            margin: 0.5rem 0;
+            font-size: 1.05rem;
+        }
+        
+        .next-steps {
+            background: #e8f5e9;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .next-steps h3 {
+            color: #2e7d32;
+            margin-bottom: 1rem;
+        }
+        
+        .next-steps ol {
+            color: #555;
+            padding-left: 1.5rem;
+        }
+        
+        .next-steps li {
+            margin: 0.8rem 0;
+            font-size: 1.05rem;
+        }
+        
+        .btn-home {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-home:hover {
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🐾 PetFeeder Pro</h1>
+            <p class="tagline">Die perfekte Lösung für Ihre Haustiere</p>
+        </div>
+    </header>
+
+    <div class="success-container">
+        <div class="success-icon">✅</div>
+        <h1 class="success-title">Zahlung erfolgreich!</h1>
+        <p class="success-message">
+            Vielen Dank für Ihre Bestellung! Ihre Zahlung wurde erfolgreich verarbeitet.
+        </p>
+
+        <div class="order-info">
+            <h3>📦 Bestellinformationen</h3>
+            <p><strong>Produkt:</strong> 3-in-1 Automatischer Futterspender für Katzen</p>
+            <p><strong>Preis:</strong> €14.99</p>
+            <p><strong>Status:</strong> Bestätigt</p>
+            <p id="session-id"></p>
+        </div>
+
+        <div class="next-steps">
+            <h3>📋 Nächste Schritte</h3>
+            <ol>
+                <li><strong>Bestellbestätigung:</strong> Sie erhalten in Kürze eine E-Mail mit allen Details zu Ihrer Bestellung.</li>
+                <li><strong>Verarbeitung:</strong> Wir beginnen sofort mit der Bearbeitung Ihrer Bestellung.</li>
+                <li><strong>Versand:</strong> Ihr Produkt wird innerhalb von 2-3 Werktagen versandt.</li>
+                <li><strong>Lieferung:</strong> Die Lieferzeit beträgt ca. 2-3 Wochen.</li>
+                <li><strong>Tracking:</strong> Sie erhalten eine Tracking-Nummer per E-Mail, sobald Ihr Paket versandt wurde.</li>
+            </ol>
+        </div>
+
+        <div class="order-info">
+            <h3>📧 Kontakt & Support</h3>
+            <p>Bei Fragen zu Ihrer Bestellung können Sie uns jederzeit kontaktieren:</p>
+            <p><strong>E-Mail:</strong> support@petfeederpro.com</p>
+            <p><strong>Antwortzeit:</strong> Innerhalb von 24 Stunden</p>
+        </div>
+
+        <a href="index.html" class="btn-home">🏠 Zurück zur Startseite</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 PetFeeder Pro. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get session ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const sessionId = urlParams.get('session_id');
+        
+        if (sessionId) {
+            document.getElementById('session-id').innerHTML = `<strong>Bestellnummer:</strong> ${sessionId.substring(0, 20)}...`;
+            
+            // Send order notification to your system
+            fetch('/.netlify/functions/process-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    sessionId: sessionId,
+                    product: '3-in-1 Katzen Futterspender',
+                    aliexpressUrl: 'https://de.aliexpress.com/item/1005009728243260.html'
+                })
+            }).catch(err => console.log('Order notification sent'));
+        }
+    </script>
+</body>
+</html>

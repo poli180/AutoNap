@@ -5,3 +5,12 @@
 
 [build]
   publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Environment variables für lokale Entwicklung
+# Für Production: Setzen Sie diese in Netlify Dashboard
+[context.production.environment]
+  NODE_VERSION = "18"
