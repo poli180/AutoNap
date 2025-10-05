@@ -1,0 +1,20 @@
+{
+  "name": "petfeeder-pro",
+  "version": "1.0.0",
+  "description": "3-in-1 Automatischer Futterspender für Katzen - Dropshipping Store",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'"
+  },
+  "keywords": [
+    "pet",
+    "feeder",
+    "dropshipping",
+    "ecommerce"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "stripe": "^14.21.0"
+  }
+}

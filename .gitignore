@@ -1,0 +1,9 @@
+node_modules/
+.netlify/
+.env
+Stripe.env
+*.log
+.DS_Store
+# Ignore files with secrets
+*secret*
+*key*
