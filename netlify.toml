@@ -1,16 +1,13 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+  command = "echo 'No build command needed'"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["stripe"]
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-[build]
-  publish = "."
-  functions = "netlify/functions"
-
-[functions]
-  node_bundler = "esbuild"
-
-# Environment variables für lokale Entwicklung
-# Für Production: Setzen Sie diese in Netlify Dashboard
-[context.production.environment]
-  NODE_VERSION = "18"
