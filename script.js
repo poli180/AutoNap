@@ -11,23 +11,23 @@ if (typeof Stripe !== 'undefined') {
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     console.log('PetFeeder Pro application started');
-    
+
     // Get all checkout buttons
     const checkoutButtons = document.querySelectorAll('.checkout-btn');
-    
+
     checkoutButtons.forEach(button => {
         button.addEventListener('click', async function() {
             const productName = this.getAttribute('data-name');
             const amount = parseInt(this.getAttribute('data-amount'));
             const currency = this.getAttribute('data-currency');
-            
+
             console.log('Checkout clicked:', { productName, amount, currency });
-            
+
             // Disable button during processing
             button.disabled = true;
             const originalText = button.textContent;
             button.textContent = '⏳ Wird verarbeitet...';
-            
+
             try {
                 // Call Netlify serverless function to create checkout session
                 const response = await fetch('/.netlify/functions/create-checkout', {
@@ -53,18 +53,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     throw new Error(data.error || 'Checkout-Sitzung konnte nicht erstellt werden');
                 }
-                
+
             } catch (error) {
                 console.error('Error:', error);
                 alert('Es gab ein Problem mit der Zahlung. Bitte versuchen Sie es erneut oder kontaktieren Sie uns.');
-                
+
                 // Re-enable button
                 button.disabled = false;
                 button.textContent = originalText;
             }
         });
     });
-    
+
     // Add smooth scrolling for better UX
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     // Add animation on scroll
     const observerOptions = {
         threshold: 0.1,
@@ -101,6 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
-    
+
     console.log('All event listeners attached successfully');
 });

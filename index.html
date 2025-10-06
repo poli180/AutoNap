@@ -112,6 +112,69 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Stripe Publishable Key - wird von Environment Variable geladen
+        // WICHTIG: Setzen Sie STRIPE_PUBLISHABLE_KEY in Netlify!
+        const STRIPE_PUBLISHABLE_KEY = 'pk_live_YOUR_KEY_HERE';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('PetFeeder Pro application started');
+
+            // Get all checkout buttons
+            const checkoutButtons = document.querySelectorAll('.checkout-btn');
+
+            checkoutButtons.forEach(button => {
+                button.addEventListener('click', async function() {
+                    const productName = this.getAttribute('data-name');
+                    const amount = parseInt(this.getAttribute('data-amount'));
+                    const currency = this.getAttribute('data-currency');
+
+                    console.log('Checkout clicked:', { productName, amount, currency });
+
+                    // Disable button during processing
+                    button.disabled = true;
+                    const originalText = button.textContent;
+                    button.textContent = '⏳ Wird verarbeitet...';
+
+                    try {
+                        // Call Netlify serverless function to create checkout session
+                        const response = await fetch('/.netlify/functions/create-checkout', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                item: {
+                                    name: productName,
+                                    amount: amount,
+                                    currency: currency,
+                                    description: '3-in-1 Automatischer Futterspender für Katzen und Hunde'
+                                }
+                            })
+                        });
+
+                        const data = await response.json();
+
+                        if (response.ok && data.url) {
+                            // Redirect to Stripe Checkout
+                            window.location.href = data.url;
+                        } else {
+                            throw new Error(data.error || 'Checkout-Sitzung konnte nicht erstellt werden');
+                        }
+
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('Es gab ein Problem mit der Zahlung. Bitte versuchen Sie es erneut oder kontaktieren Sie uns.');
+
+                        // Re-enable button
+                        button.disabled = false;
+                        button.textContent = originalText;
+                    }
+                });
+            });
+
+            console.log('PetFeeder Pro bereit!');
+        });
+    </script>
 </body>
 </html>
